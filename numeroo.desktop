@@ -1,0 +1,14 @@
+
+[Desktop Entry]
+Version=1.0
+Name=Numeroo
+Comment=A HTML5-based Number Game
+GenericName=Numeroo
+Exec=chromium-browser --enable-plugins --enable-extensions --enable-user-scripts --enable-printing --enable-sync --use-gl=egl --ignore-gpu-blacklist --auto-ssl-client-auth %U --app-id=mdoenkahlagpcngohbfebajbgmjonajg --load-extension=/usr/share/numeroo/ --no-first-run
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=numeroo
+Categories=Game;
+StartupWMClass=Chromium
+StartupNotify=true

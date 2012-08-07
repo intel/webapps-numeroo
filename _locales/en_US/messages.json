@@ -1,0 +1,35 @@
+{
+    "gameName": {"message": "Numeroo"},
+    "newGame": {"message": "New Game"},
+    "resumeGame": {"message": "Resume Game"},
+    "about": {"message": "Help"},
+    "help": {"message": "Help"},
+    "aboutGameText": {"message": "The object of the game is to place the numbers 1-9 
+        in every square on a 9x9 grid, with no number repeating in any row, 
+        column, or 3x3 subgrid.<br><br>
+        Numbers are entered by clicking a square, then either clicking or 
+        using the keyboard to enter digits from 1-9. The arrow keys can be 
+        used to change which cell is selected. You can write hints for a 
+        square by clicking “Write Hint”, or holding down the SHIFT key when 
+        clicking a square. When a row, column, or subgrid has been completely 
+        filled, its background is highlighted.<br>"},
+    "easy": {"message": "Easy"},
+    "normal": {"message": "Normal"},
+    "hard": {"message": "Hard"},
+    "viewHint": {"message": "View Hint"},
+    "writeNotes": {"message": "Write Hint"},
+    "newGame": {"message": "New Game"},
+    "chooseTheme": {"message": "Choose Theme"},
+    "options": {"message": "Options"},
+    "start": {"message": "Start"},
+    
+    "gameOptions": {"message": "Game Options"},
+    "easyGameSQ": {"message": "Easy Game Starting Squares:"},
+    "normalGameSQ": {"message": "Normal Game Starting Squares:"},
+    "hardGameSQ": {"message": "Hard Game Starting Squares:"},
+    "flagInvalid": {"message": "Flag invalid entries"},
+    "showPossible": {"message": "Show possible solutions"},
+    
+    "youWin": {"message": "<b>YOU WIN!!!</b>"},
+    "gameOverText": {"message": "Your Time: <t></t>"}
+}
