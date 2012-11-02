@@ -163,6 +163,12 @@ body {
   #info { -webkit-transform: translate(-50%, -50%) scale(0.78125, 0.8); }
   #licensebtnl { -webkit-transform: scale(0.78125, 0.8); }
 }
+/* 600 x 989 */
+@media (min-width: 600px) and (min-height: 989px) and (orientation: portrait) {
+  body { top: 0%; left: 0%; height: 600px; width: 989px; -webkit-transform: translate(-50%, -50%) rotate(90deg) translate(50%, -50%); }
+  #info { -webkit-transform: translate(-50%, -50%) scale(0.9658, 1.0); }
+  #licensebtnl { -webkit-transform: scale(0.9658, 1.0); }
+}
 /* 600 x 1024 */
 @media (min-width: 600px) and (min-height: 1024px) and (orientation: portrait) {
   body { top: 0%; left: 0%; height: 600px; width: 1024px; -webkit-transform: translate(-50%, -50%) rotate(90deg) translate(50%, -50%); }

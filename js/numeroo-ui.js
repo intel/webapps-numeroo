@@ -163,6 +163,12 @@ function getScreenDimensions() {
     screenWidth = 800;
     screenHeight = 480;
 
+    if((w >= 989)&&(h >= 600))
+    {
+        screenWidth = 989;
+        screenHeight = 600;
+    }
+
     if((w >= 1024)&&(h >= 600))
     {
         screenWidth = 1024;
