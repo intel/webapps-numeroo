@@ -64,5 +64,6 @@ License: GPL v2
 
 KNOWN ISSUES
 -----------------------------------------------------------------------------
+
 1) Sound performance on the emulator and device is choppy, it's a platform issue
    with the first tizen release.
