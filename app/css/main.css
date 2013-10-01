@@ -99,20 +99,20 @@ canvas.topcanvas {
 }
 
 body {
-    margin: 0px;
-    -webkit-user-select: none;
-    background-color: "white";
-    box-shadow: 5px 5px 20px black;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    position: absolute;
-    width: 1024px;
-    height: 600px;
+    background-positon: left top;
+    display: -webkit-box;
     -webkit-box-align: center;
     -webkit-box-pack: center;
     -webkit-box-orient: vertical;
-    display: -webkit-box;
+    -webkit-user-select: none;
+    position: absolute;
+    cursor: default;
+    width: 1024px;
+    height: 600px;
+    padding: 0px;
+    margin: 0px;
+    background-color: "white";
+    box-shadow: 5px 5px 20px black;
 }
 
 #primary {
@@ -131,61 +131,8 @@ body {
     cursor: default;
     width: 1024px;
     height: 600px;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
     z-index: 10;
     pointer-events: none;
-}
-
-/* 800 x 480 */
-@media (orientation: landscape) {
-  body { top: 50%; left: 50%; height: 480px; width: 800px; }
-  #info { -webkit-transform: translate(-50%, -50%) scale(0.78125, 0.8); }
-  #licensebtnl { -webkit-transform: scale(0.78125, 0.8); }
-}
-/* 1024 x 600 */
-@media (min-width: 1024px) and (min-height: 600px) and (orientation: landscape) {
-  body { top: 50%; left: 50%; height: 600px; width: 1024px; }
-  #info { -webkit-transform: translate(-50%, -50%); }
-  #licensebtnl { -webkit-transform: scale(1.0, 1.0); }
-}
-/* 1280 x 720 */
-@media (min-width: 1280px) and (min-height: 720px) and (orientation: landscape) {
-  body { top: 50%; left: 50%; height: 720px; width: 1280px; }
-  #info { -webkit-transform: translate(-50%, -50%) scale(1.25, 1.199); }
-  #licensebtnl { -webkit-transform: scale(1.25, 1.199); }
-}
-
-/* 480 x 800 */
-@media (orientation: portrait) {
-  body { top: 0%; left: 0%; height: 480px; width: 800px; -webkit-transform: translate(-50%, -50%) rotate(90deg) translate(50%, -50%); }
-  #info { -webkit-transform: translate(-50%, -50%) scale(0.78125, 0.8); }
-  #licensebtnl { -webkit-transform: scale(0.78125, 0.8); }
-}
-/* 600 x 989 */
-@media (min-width: 600px) and (min-height: 989px) and (orientation: portrait) {
-  body { top: 0%; left: 0%; height: 600px; width: 989px; -webkit-transform: translate(-50%, -50%) rotate(90deg) translate(50%, -50%); }
-  #info { -webkit-transform: translate(-50%, -50%) scale(0.9658, 1.0); }
-  #licensebtnl { -webkit-transform: scale(0.9658, 1.0); }
-}
-/* 600 x 1024 */
-@media (min-width: 600px) and (min-height: 1024px) and (orientation: portrait) {
-  body { top: 0%; left: 0%; height: 600px; width: 1024px; -webkit-transform: translate(-50%, -50%) rotate(90deg) translate(50%, -50%); }
-  #info { -webkit-transform: translate(-50%, -50%); }
-  #licensebtnl { -webkit-transform: scale(1.0, 1.0); }
-}
-/* 720 x 1230 */
-@media (min-width: 720px) and (min-height: 1230px) and (orientation: portrait) {
-  body { top: 0%; left: 0%; height: 720px; width: 1230px; -webkit-transform: translate(-50%, -50%) rotate(90deg) translate(50%, -50%); }
-  #info { -webkit-transform: translate(-50%, -50%) scale(1.2, 1.199); }
-  #licensebtnl { -webkit-transform: scale(1.2, 1.199); }
-}
-/* 720 x 1280 */
-@media (min-width: 720px) and (min-height: 1280px) and (orientation: portrait) {
-  body { top: 0%; left: 0%; height: 720px; width: 1280px; -webkit-transform: translate(-50%, -50%) rotate(90deg) translate(50%, -50%); }
-  #info { -webkit-transform: translate(-50%, -50%) scale(1.25, 1.199); }
-  #licensebtnl { -webkit-transform: scale(1.25, 1.199); }
 }
 
 input[type='range'] { 
@@ -202,7 +149,7 @@ input[type='range'] {
 
 div[data-role='fieldcontain'] {
     padding: 10px 5px;
-} 
+}
 
 @font-face {
     font-family: 'Manila';

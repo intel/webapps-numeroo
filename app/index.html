@@ -2,19 +2,14 @@
 <!--
  * Copyright (c) 2012, Intel Corporation.
  *
- * This program is licensed under the terms and conditions of the 
+ * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
 -->
 <html lang="en">
 <head>
-    <meta id="viewport_meta" name="viewport" content="" />
-    <script type="text/javascript">
-        var viewport_meta = document.getElementById('viewport_meta');
-        var w = (screen.orientation.indexOf("portrait") == 0)?screen.availWidth:screen.availHeight;
-        viewport_meta.setAttribute('content','width='+w+', user-scalable=no');
-    </script>
+    <meta name="viewport" content="width=device-width target-densitydpi=device-dpi initial-scale=1 maximum-scale=1 user-scalable=0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Numeroo</title>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
@@ -35,15 +30,15 @@
     <div id="resumeGameButton" class="button mainMenuButton">Resume Game</div>
     <div id="aboutButton" class="button mainMenuButton">Help</div>
   </div>
-  
-  <div id="gameLevelButtons" style="display:none">	  
-    <div id="easyGameButton" class="button gameButton">Easy</div>	  
+
+  <div id="gameLevelButtons" style="display:none">
+    <div id="easyGameButton" class="button gameButton">Easy</div>
     <div id="normalGameButton" class="button gameButton">Normal</div>
     <div id="hardGameButton" class="button gameButton">Hard</div>
   </div>
 
   <div id="inGameButtons" style="display:none" >
-    <div id="viewHintButton" class="button gameMenuButton">View Hint</div>      
+    <div id="viewHintButton" class="button gameMenuButton">View Hint</div>
     <div id="writeNoteButton" class="gameMenuButton">Write Hint</div>
     <div id="helpButton" class="button gameMenuButton">Help</div>
     <div id="startNewGameButton" class="button gameMenuButton">New Game</div>
@@ -59,14 +54,14 @@
     <div id="startGameButton" class="button newGameButton">Start</div>
   </div>
 
-  <div id="content">  	
+  <div id="content">
     <canvas id="mainMenuCanvas" class="gridcanvas"></canvas>
     <canvas id="bottomcanvas" class="bottomcanvas"></canvas>
     <canvas id="highlightcanvas" class="bottomcanvas"></canvas>
     <canvas id="gridcanvas" class="gridcanvas"></canvas>
     <canvas id="topcanvas" class="topcanvas"></canvas>
     <canvas id="startNewGameCanvas" class="topcanvas" style="display: none"></canvas>
-  </div> 
+  </div>
 
   <div id="licensebtnl" style="top: 92%; left: 95%;"> i </div>
 </div>
@@ -79,14 +74,14 @@
          <div class="inner">
            <div class="close"> x </div>
            <div class="contents">
-        The object of the game is to place the numbers 1-9 in every square 
+        The object of the game is to place the numbers 1-9 in every square
         on a 9x9 grid, with no number repeating in any row, column, or 3x3 subgrid.
         <br><br>
-        Numbers are entered by clicking a square, then either clicking or using the 
-        keyboard to enter digits from 1-9. The arrow keys can be used to change 
-        which cell is selected. You can write hints for a square by clicking 
-        “Write Hint”, or holding down the SHIFT key when clicking a square. 
-        When a row, column, or subgrid has been completely filled, its background 
+        Numbers are entered by clicking a square, then either clicking or using the
+        keyboard to enter digits from 1-9. The arrow keys can be used to change
+        which cell is selected. You can write hints for a square by clicking
+        “Write Hint”, or holding down the SHIFT key when clicking a square.
+        When a row, column, or subgrid has been completely filled, its background
         is highlighted.
            </div>
          </div>
@@ -102,6 +97,7 @@
     </div>
 </div>
 <script src="lib/jquery/jquery.min.js"></script>
+<script src="js/scaleBody.js"></script>
 <script src="js/infodialog.js"></script>
 <script src="js/license.js"></script>
 <script src="js/sound.js"></script>

@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2012, Intel Corporation.
  *
- * This program is licensed under the terms and conditions of the 
+ * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -56,7 +56,7 @@ var mainMenuButton1Y;
 var mainMenuButton2Y;
 var mainMenuButton3Y;
 
-var playMenuLeftEdge; 
+var playMenuLeftEdge;
 var playMenuTop;
 var playMenuHeight;
 var playMenuWidth;
@@ -88,13 +88,13 @@ var squareSelector = new Image();
 var highlightColor = "rgba(253, 243, 216, 0.5)";
 var numPickBoxColor = "rgba(0, 0, 0, 1)";
 var numPickTextColor = "rgba(255, 255, 255, 1)";
-var numNoteBoxColor = "rgba(100, 0, 100, 1)"; 
+var numNoteBoxColor = "rgba(100, 0, 100, 1)";
 var numNoteBoxSelectedColor = "rgba(200, 0, 200, 1)";
 var numPickOutlineColor = "rgba(0, 255, 255, 1)";
 var boardBGColor1 = "rgba(200, 200, 200, 1)";
 var boardBGColor2 = "rgba(255, 255, 255, 1)";
 var gridColor = "rgba(0, 0, 0, 1)";
-var smallGridColor = "rgba(0, 0, 0, 1)"; 
+var smallGridColor = "rgba(0, 0, 0, 1)";
 var standardTextColor = "black";
 var glossyButton = "5px 5px 10px rgba(0, 0, 0, 0.7), 0px 0px 3px rgba(0, 0, 0, .1), inset 0px 0px 26px rgba(245,245,245,0.5)";
 
@@ -141,51 +141,14 @@ function getFontSize(stringToSize, areaH, areaW, usePercent, context, theme)
 function getButtonFont(buttonHeight)
 {
     buttonTextSize = (buttonHeight*.5)|0;
-    var fontString = "bold " + buttonTextSize.toString() + "px " + currentTheme;        
-    
+    var fontString = "bold " + buttonTextSize.toString() + "px " + currentTheme;
+
     return fontString;
 }
 
 function getScreenDimensions() {
-    var w;
-    var h;
-    if($(window).width() > $(window).height())
-    {
-        w = $(window).width();
-        h = $(window).height();
-    }
-    else
-    {
-        h = $(window).width();
-        w = $(window).height();
-    }
-
-    screenWidth = 800;
-    screenHeight = 480;
-
-    if((w >= 989)&&(h >= 600))
-    {
-        screenWidth = 989;
-        screenHeight = 600;
-    }
-
-    if((w >= 1024)&&(h >= 600))
-    {
-        screenWidth = 1024;
-        screenHeight = 600;
-    }
-
-    if((w >= 1230)&&(h >= 720))
-    {
-        screenWidth = 1230;
-        screenHeight = 720;
-    }
-
-    if((w >= 1280)&&(h >= 720))
-    {
-        screenWidth = 1280;
-        screenHeight = 720;
-    }
+    screenWidth = $("body").width();
+    screenHeight = $("body").height();
 }
 
 function drawMainMenu(){
@@ -194,19 +157,19 @@ function drawMainMenu(){
     mainMenuContext.canvas.width = screenWidth;
     mainMenuContext.canvas.height = screenHeight;
 
-    jQuery("#mainMenuCanvas").height(screenHeight); 
-    jQuery("#mainMenuCanvas").width(screenWidth); 
+    jQuery("#mainMenuCanvas").height(screenHeight);
+    jQuery("#mainMenuCanvas").width(screenWidth);
 
     mainMenuContext.save();
 
-    mainMenuContext.clearRect(0, 0, mainMenuContext.canvas.width, mainMenuContext.canvas.height);    
+    mainMenuContext.clearRect(0, 0, mainMenuContext.canvas.width, mainMenuContext.canvas.height);
     mainMenuContext.drawImage(images.mainMenuBG, 0, 0, mainMenuContext.canvas.width, mainMenuContext.canvas.height);
 
     numerooRightEdge =     2 * (screenWidth / 3.22);
-    mainMenuButtonLeftEdge = numerooRightEdge - (screenWidth / 5);    
+    mainMenuButtonLeftEdge = numerooRightEdge - (screenWidth / 5);
     mainMenuButtonHeight = screenHeight / 12;
 
-    var mainMenuItemSpacer = ((screenHeight - (4 * (mainMenuButtonHeight + shadowOffset))) / 10) | 2; 
+    var mainMenuItemSpacer = ((screenHeight - (4 * (mainMenuButtonHeight + shadowOffset))) / 10) | 2;
 
     mainMenuButtonWidth = numerooRightEdge - mainMenuButtonLeftEdge;
     mainMenuButtonRightEdge = mainMenuButtonLeftEdge + mainMenuButtonWidth;
@@ -268,42 +231,42 @@ function drawMainMenu(){
 function drawPlayBar() {
 
     playMenuLeftEdge = numerooRightEdge + 70;
-    playMenuTop = mainMenuContext.canvas.height / 2.5;    
-    playMenuHeight = images.playMenu.height; 
+    playMenuTop = mainMenuContext.canvas.height / 2.5;
+    playMenuHeight = images.playMenu.height;
     playMenuWidth = images.playMenu.width;
-    
+
     if (playMenuHeight + playMenuTop > screenHeight)
     {
         var ratio = screenHeight / (playMenuHeight + playMenuTop);
         playMenuHeight = playMenuHeight * ratio;
         playMenuWidth = playMenuWidth * ratio;
     }
-    
+
     var buttonWidth = playMenuWidth * .75;
-    var buttonLeftEdge = playMenuLeftEdge + (playMenuWidth - buttonWidth)/2;    
+    var buttonLeftEdge = playMenuLeftEdge + (playMenuWidth - buttonWidth)/2;
     var easyButtonTop = playMenuTop + (playMenuHeight * .3);
     var playButtonHeight = ((playMenuHeight - (easyButtonTop - playMenuTop) - (60 + 2 * shadowOffset)) / 3);
     buttonTextSize = (playButtonHeight*.5)|0;
 
     var normalButtonTop = easyButtonTop + playButtonHeight + 30;
     var hardButtonTop = normalButtonTop + playButtonHeight + 30;
-    
+
     mainMenuContext.drawImage(images.playMenu, numerooRightEdge + 70, playMenuTop, playMenuWidth, playMenuHeight);
-    
+
     mainMenuContext.save();
-    mainMenuContext.fillStyle = "#ec0001"; 
+    mainMenuContext.fillStyle = "#ec0001";
     mainMenuContext.shadowColor = "black";
-            
+
     mainMenuContext.beginPath();
-    
+
     mainMenuContext.moveTo(numerooRightEdge + 80, mainMenuButton1Y); // give the (x,y) coordinates
     mainMenuContext.lineTo(mainMenuButtonRightEdge + 25, mainMenuButton1Y + (mainMenuButtonHeight / 2));
     mainMenuContext.lineTo(numerooRightEdge + 80, mainMenuButton1Y + mainMenuButtonHeight);
     mainMenuContext.lineTo(numerooRightEdge + 80, mainMenuButton1Y);
-            
-    mainMenuContext.fill();    
-    mainMenuContext.closePath();    
-                
+
+    mainMenuContext.fill();
+    mainMenuContext.closePath();
+
     $("#easyGameButton").css({
             "visibility": "visible",
             "left": (buttonLeftEdge + 1) + "px",
@@ -315,19 +278,19 @@ function drawPlayBar() {
         });
     $("#normalGameButton").css({
             "visibility": "visible",
-            "left": (buttonLeftEdge + 1) + "px", 
-            "top":(normalButtonTop + 1) + "px", 
-            "width":(buttonWidth - 2) + "px", 
-            "height":(playButtonHeight - 2) + "px", 
+            "left": (buttonLeftEdge + 1) + "px",
+            "top":(normalButtonTop + 1) + "px",
+            "width":(buttonWidth - 2) + "px",
+            "height":(playButtonHeight - 2) + "px",
             "font": "bold " + buttonTextSize.toString() + "px " + "Manila",
             "line-height": playButtonHeight + "px"
         });
     $("#hardGameButton").css({
             "visibility": "visible",
-            "left": (buttonLeftEdge + 1) + "px", 
-            "top":(hardButtonTop + 1) + "px", 
-            "width":(buttonWidth - 2) + "px", 
-            "height":(playButtonHeight - 2) + "px", 
+            "left": (buttonLeftEdge + 1) + "px",
+            "top":(hardButtonTop + 1) + "px",
+            "width":(buttonWidth - 2) + "px",
+            "height":(playButtonHeight - 2) + "px",
             "font": "bold " + buttonTextSize.toString() + "px " + "Manila",
             "line-height": playButtonHeight + "px"
         });
@@ -336,88 +299,88 @@ function drawPlayBar() {
 }
 
 function startTimer(){
-    
+
     if (timer === 0)
-    {        
+    {
         timerBegin = new Date().getTime();
-        pausedSeconds = 0;         
+        pausedSeconds = 0;
     }
     else if (timerPause)
     {
-        var unpauseTime = new Date().getTime() - timerPause;  
-        var pauseSecs = Math.floor(Math.floor(unpauseTime / 100) / 10);  
-        pausedSeconds += pauseSecs;    
-        
-        timerPause = undefined;        
+        var unpauseTime = new Date().getTime() - timerPause;
+        var pauseSecs = Math.floor(Math.floor(unpauseTime / 100) / 10);
+        pausedSeconds += pauseSecs;
+
+        timerPause = undefined;
     }
-        
+
     //If we need to resize this, restart the timeout
 
-    var itemSpacer = ((screenHeight - (7 * (inGameButtonHeight + shadowOffset)) - logoHeight) / 10) | 2; 
-    
+    var itemSpacer = ((screenHeight - (7 * (inGameButtonHeight + shadowOffset)) - logoHeight) / 10) | 2;
+
     var minutes = Math.floor(timer / 60);
     var seconds = timer % 60;
     var timerWidth =logoWidth;
     var timerLeft = logoLeft;
     var timerTop = logoBottom + itemSpacer;
-    
+
     timerBottom = timerTop + inGameButtonHeight;
-    
+
     bottomContext.save();
     bottomContext.fillStyle = "black";
-        
+
     if (seconds < 10)
         seconds = "0" + seconds;
-        
+
     if (minutes < 10)
             minutes = "0" + minutes;
-    
+
     var timeString = minutes + ":" + seconds;
-    
+
     bottomContext.font = getFontSize("00:00" + "  " + difficulty, (timerBottom - timerTop), timerWidth, 0.9, bottomContext);
-    
+
     var stringSize = bottomContext.measureText(timeString + difficulty).width;
     var spaceSize = logoWidth - stringSize;
     var difficultyLeft = timerLeft + bottomContext.measureText(timeString).width + spaceSize;
-    
+
     bottomContext.fillText(timeString, timerLeft, timerTop + 30);
     bottomContext.fillText(difficulty, difficultyLeft, timerTop + 30);
-    
+
     bottomContext.restore();
-    
+
     if (cancelTimer)
         clearInterval(cancelTimer);
-            
+
     cancelTimer = setInterval(function(){
-        
-        var time = new Date().getTime() - timerBegin;  
-        timer = Math.floor(Math.floor(time / 100) / 10);  
-         
+
+        var time = new Date().getTime() - timerBegin;
+        timer = Math.floor(Math.floor(time / 100) / 10);
+
         timer -= pausedSeconds;
-     
+
         timerTop = logoBottom + itemSpacer;
         timerBottom = timerTop + inGameButtonHeight;
         timerWidth = logoWidth;
         timerLeft = logoLeft;
         minutes = Math.floor(timer / 60);
         seconds = timer % 60;
-            
+
         if (seconds < 10)
             seconds = "0"+seconds;
-            
+
         if (minutes < 10)
             minutes = "0"+minutes;
-            
+
         bottomContext.save();
-        bottomContext.fillStyle = gameMenuBarColor;    
+        bottomContext.fillStyle = gameMenuBarColor;
         bottomContext.fillRect(gridMenuBarLeft, logoBottom, gridMenuBarWidth , ($("#viewHintButton").position().top - 5) - logoBottom);
-        
+
         bottomContext.fillStyle = "black";
-        
+
         bottomContext.font = getFontSize("00:00" + "  " + difficulty, (timerBottom - timerTop), timerWidth, 0.9, bottomContext);
-        
+
         timeString = minutes + ":" + seconds
-        
+
         bottomContext.fillText(timeString, timerLeft, timerTop + 30);
         bottomContext.fillText(difficulty, difficultyLeft, timerTop + 30);
         bottomContext.restore();
@@ -425,10 +388,10 @@ function startTimer(){
         localStorage.setItem("pausedSeconds", pausedSeconds);
         localStorage.setItem("timerBegin", timerBegin);
         localStorage.setItem("timerPause", timerPause);
-        
+
         timerResume = new Date().getTime();
-        localStorage.setItem("timerResume", timerResume);        
-        
+        localStorage.setItem("timerResume", timerResume);
+
     }, 100);
 }
 
@@ -441,16 +404,16 @@ function pauseTimer(){
 }
 
 function drawGameMenu(){
-    
+
     /* Draw Bar and Logo */
-    bottomContext.fillStyle = gameMenuBarColor;    
+    bottomContext.fillStyle = gameMenuBarColor;
     bottomContext.fillRect(gridMenuBarLeft, 0, gridMenuBarWidth , screenHeight);
-    
-    inGameButtonHeight = screenHeight / 13;    
+
+    inGameButtonHeight = screenHeight / 13;
     logoWidth = logoImage.width;
     logoHeight = logoImage.height;
 
-            
+
     if (logoWidth > gridMenuBarWidth * .9)
     {
         logoWidth = gridMenuBarWidth * .9;
@@ -458,29 +421,28 @@ function drawGameMenu(){
     }
 
     logoLeft = gridMenuBarLeft + ((gridMenuBarWidth - logoWidth) / 2);
-    
+
     var inGameButtonWidth = logoWidth - shadowOffset;
-    var itemSpacer = ((screenHeight - (7 * (inGameButtonHeight + shadowOffset)) - logoHeight) / 10) | 2; 
-    
+    var itemSpacer = ((screenHeight - (7 * (inGameButtonHeight + shadowOffset)) - logoHeight) / 10) | 2;
+
     logoBottom = itemSpacer / 2 + logoHeight;
-        
+
     startTimer();
-        
+
     bottomContext.drawImage(logoImage, logoLeft, itemSpacer / 2, logoWidth, logoHeight );
 
     /* Draw buttons */
-    
-    
+
     buttonTextSize = (inGameButtonHeight*.5)|0;
-    var viewHintButtonTop = timerBottom + itemSpacer;     
+    var viewHintButtonTop = timerBottom + itemSpacer;
     var writeNoteButtonTop = viewHintButtonTop + inGameButtonHeight + itemSpacer;
     var helpButtonTop = writeNoteButtonTop + inGameButtonHeight + itemSpacer;
     var startNewButtonTop = screenHeight - inGameButtonHeight - itemSpacer - shadowOffset ;
     var gmButtonTextSize = getFontSize($("#writeNoteButton").text(), inGameButtonHeight, inGameButtonWidth - 5, 0.5, bottomContext);
-    
+
     $("#viewHintButton").css({"visibility":"visible", "background-color": standardButtonColor, "left": (logoLeft + 1) + "px", "top":(viewHintButtonTop + 1) + "px", "width":(inGameButtonWidth - 2) + "px", "height":(inGameButtonHeight - 2) + "px", "font": gmButtonTextSize }).css("line-height", inGameButtonHeight + "px");
     $("#startNewGameButton").css({"visibility":"visible", "background-color": standardButtonColor, "left": (logoLeft + 1) + "px", "top":(startNewButtonTop + 1) + "px", "width":(inGameButtonWidth - 2) + "px", "height":(inGameButtonHeight - 2) + "px", "font": gmButtonTextSize }).css("line-height", inGameButtonHeight + "px");
-    
+
     if (option_showpossible != 1)
     {
         $("#writeNoteButton").css({"visibility":"visible", "left": (logoLeft + 1) + "px", "top":(writeNoteButtonTop + 1) + "px", "width":(inGameButtonWidth - 2) + "px", "height":(inGameButtonHeight - 2) + "px", "font": gmButtonTextSize }).css("line-height", inGameButtonHeight + "px");
@@ -526,11 +488,11 @@ function printCellNumbers(cellNumber)
             boardContext.fillStyle = "red";
         else
             boardContext.fillStyle = standardTextColor;
-            
+
         var tDim = boardContext.measureText(game.cells[cellNumber].value.toString());
         var xOffset = (((cellNumber % 9)|0) * s) + (s/2) - ((tDim.width)/2);
-        var yOffset = (((cellNumber / 9)|0) * s) + (s*3/4);            
-           
+        var yOffset = (((cellNumber / 9)|0) * s) + (s*3/4);
+
         boardContext.font = numberFont;
         boardContext.fillText(game.cells[cellNumber].value.toString(), x+xOffset, y+yOffset);
      }
@@ -547,7 +509,7 @@ function printCellNumbers(cellNumber)
             var yOffset = (((cellNumber / 9)|0) * s) + (((j / 3)|0) * t) + (s/4) + 1;
 
             boardContext.font = numberFont;
-            boardContext.fillText((j+1).toString(), x+xOffset, y+yOffset);                        
+            boardContext.fillText((j+1).toString(), x+xOffset, y+yOffset);
         }
      }
      else
@@ -558,9 +520,9 @@ function printCellNumbers(cellNumber)
         {
             if(!game.cells[cellNumber].possible[j].selected)
                 continue;
-    
+
             if((game.cells[cellNumber].possible[j].hinted && !game.checkPossible(cellNumber, j+1)) || ((option_flaginvalid == 1) && !game.checkPossible(cellNumber, j+1)) )
-                boardContext.fillStyle = "red";                    
+                boardContext.fillStyle = "red";
             else if (game.cells[cellNumber].possible[j].hinted)
                 boardContext.fillStyle = fixedNumberColor;
             else
@@ -578,7 +540,7 @@ function printCellNumbers(cellNumber)
 function drawBoard() {
     getScreenDimensions();
     if(screenWidth <= screenHeight)
-        boardWidth = (screenWidth - boardOffset) < screenHeight *.6 ? (screenWidth - boardOffset) : (screenHeight *.6) - boardOffset;        
+        boardWidth = (screenWidth - boardOffset) < screenHeight *.6 ? (screenWidth - boardOffset) : (screenHeight *.6) - boardOffset;
     else
         boardWidth = (screenHeight - boardOffset) < screenWidth *.6 ? (screenHeight - boardOffset) : (screenWidth *.6) - boardOffset;
 
@@ -588,18 +550,18 @@ function drawBoard() {
     boardContext.canvas.width = screenWidth;
     boardContext.canvas.height = screenHeight;
     boardContext.clearRect(0, 0, boardContext.canvas.width, boardContext.canvas.height);
-    
+
     var i, j;
     var xBmin = boardOffset;
     var yBmin = (screenHeight - boardWidth) / 2;
-    var m = boardWidth/3; 
+    var m = boardWidth/3;
     var s = boardWidth/9;
     var t = boardWidth/27;
-    textSize = (s*3/4)|0;    
+    textSize = (s*3/4)|0;
     miniSize = (textSize/3)|0;
 
     // draw the board sized square
-    
+
     boardContext.lineWidth=7;
     boardContext.strokeStyle = gridColor;
     boardContext.strokeRect(x, y, boardWidth, boardWidth);
@@ -612,13 +574,13 @@ function drawBoard() {
     {
         for(j = 0; j < 3; j++)
         {
-            counter++;    
+            counter++;
             if (currentTheme == "Nancy")        //Nancy theme's board is drawn slightly differently
             {
                 boardContext.lineWidth=4;
                 boardContext.strokeStyle = smallGridColor;
                 if (counter % 2 != 0)
-                    boardContext.strokeRect(x+(j*m), y+(i*m), m, m);                
+                    boardContext.strokeRect(x+(j*m), y+(i*m), m, m);
             }
             else
                 boardContext.strokeRect(x+(j*m), y+(i*m), m, m);
@@ -632,13 +594,13 @@ function drawBoard() {
     for(i = 0; i < 9; i++)
     {
         for(j = 0; j < 9; j++)
-        {                    
+        {
             if (currentTheme == "Nancy")
             {
                 boardContext.strokeStyle = smallGridColor;
-                if ( ((j > 2 && j < 6) && (i < 3 || i > 5)) || 
-                    ((j < 3 || j > 5) && (i > 2 && i < 6) ))      
-                {          
+                if ( ((j > 2 && j < 6) && (i < 3 || i > 5)) ||
+                    ((j < 3 || j > 5) && (i > 2 && i < 6) ))
+                {
                     boardContext.lineWidth = 4;
                     boardContext.strokeRect(x+(j*s), y+(i*s), s, s);
                 }
@@ -646,19 +608,19 @@ function drawBoard() {
                 {
                     boardContext.lineWidth = 1;
                     boardContext.strokeRect(x+(j*s) + 3.5, y+(i*s) + 3.5, s - 7, s - 7);
-                }        
+                }
             }
             else
-            {            
+            {
                 boardContext.strokeRect(x+(j*s), y+(i*s), s, s);
             }
-        
+
             if (j % 3 == 0)
                 counter++;
         }
     }
 
-    // fill in the numbers        
+    // fill in the numbers
     for(i = 0; i < 81; i++)
     {
         printCellNumbers(i);
@@ -674,7 +636,7 @@ function drawGrid() {
 
     getScreenDimensions();
     if(screenWidth <= screenHeight)
-        boardWidth = (screenWidth - boardOffset) < screenHeight *.6 ? (screenWidth - boardOffset) : (screenHeight *.6) - boardOffset;        
+        boardWidth = (screenWidth - boardOffset) < screenHeight *.6 ? (screenWidth - boardOffset) : (screenHeight *.6) - boardOffset;
     else
         boardWidth = (screenHeight - boardOffset) < screenWidth *.6 ? (screenHeight - boardOffset) : (screenWidth *.6) - boardOffset;
 
@@ -689,41 +651,41 @@ function drawGrid() {
     boardContext.canvas.height = screenHeight;
     topContext.canvas.width = screenWidth;
     topContext.canvas.height = screenHeight;
-        
+
     bottomContext.clearRect(0, 0, bottomContext.canvas.width, bottomContext.canvas.height);
     highlightContext.clearRect(0, 0, highlightContext.canvas.width, highlightContext.canvas.height);
     topContext.clearRect(0, 0, topContext.canvas.width, topContext.canvas.height);
     boardContext.clearRect(0, 0, boardContext.canvas.width, boardContext.canvas.height);
-    
+
     var i, j;
     var xBmin = boardOffset;
     var yBmin = (screenHeight - boardWidth) / 2;
-    var m = boardWidth/3; 
+    var m = boardWidth/3;
     var s = boardWidth/9;
     var t = boardWidth/27;
-    textSize = (s*3/4)|0;    
+    textSize = (s*3/4)|0;
     miniSize = (textSize/3)|0;
 
     gridMenuBarLeft = boardWidth + (3 * boardOffset) + s;
     gridMenuBarWidth = screenWidth - gridMenuBarLeft - 10;
-    
+
     // draw the board sized square
-    
+
     boardContext.lineWidth=7;
     boardContext.strokeStyle = gridColor;
     boardContext.strokeRect(x, y, boardWidth, boardWidth);
-    
+
     drawGameMenu();
-        
+
     // draw valid row/col/3x3 highlights
-    
+
     var counter = 1;
     bottomContext.save();
     bottomContext.fillStyle = boardBGColor1;
     boardContext.strokeStyle = gridColor;
-    
+
     boardContext.lineWidth=4;
- 
+
     for(i = 0; i < 3; i++)
     {
         for(j = 0; j < 3; j++)
@@ -734,21 +696,21 @@ function drawGrid() {
                 bottomContext.fillStyle = boardBGColor1;
 
             bottomContext.fillRect(x+3*(j*s), y+3*(i*s), 3*s, 3*s);
-            counter++;    
-            
+            counter++;
+
             if (currentTheme == "Nancy")        //Nancy theme's board is drawn slightly differently
             {
                 boardContext.lineWidth=4;
                 boardContext.strokeStyle = smallGridColor;
                 if (counter % 2 != 0)
-                    boardContext.strokeRect(x+(j*m), y+(i*m), m, m);                
+                    boardContext.strokeRect(x+(j*m), y+(i*m), m, m);
             }
             else
                 boardContext.strokeRect(x+(j*m), y+(i*m), m, m);
         }
     }
     bottomContext.restore();
-    
+
     boardContext.fillStyle = "rgba(0, 255, 100, 0.3)";
     var minorvictory = false;
 
@@ -757,7 +719,7 @@ function drawGrid() {
         if(game.validrow[i])
         {
             if(game.prevvalidrow[i]||!game.ready||gamecomplete)
-            {    
+            {
                 drawRect(highlightContext, xBmin, yBmin+(i*s), boardWidth, s);
             }
             else
@@ -800,25 +762,25 @@ function drawGrid() {
         // game is complete
         cellSelected = -1;
         Sounds.youwin.play();
-        animateRect(bottomContext, 0, 0, 
+        animateRect(bottomContext, 0, 0,
             bottomContext.canvas.width, bottomContext.canvas.height);
         pauseTimer();
-        
+
         var mins = Math.floor(timer / 60);
         var secs = timer % 60;
         if (secs < 10)
             secs = "0" + secs;
-            
+
         if (mins < 10)
             mins = "0" + mins;
-            
+
         $("#win_contents2 t").html(mins + ":" + secs);
-        
+
         $("#inGameButtons").hide();
-        
+
         gameFinished = true;
         localStorage.setItem("hasData", "false");    //Don't allow a finished game to be resumed
-        
+
         winDialog.show();
     }
     else if(minorvictory)
@@ -826,20 +788,20 @@ function drawGrid() {
         Sounds.rowsuccess.play();
     }
 
-    
+
     // draw all 81 little squares
     boardContext.lineWidth=1;
     counter = 1;
     for(i = 0; i < 9; i++)
     {
         for(j = 0; j < 9; j++)
-        {                    
+        {
             if (currentTheme == "Nancy")
             {
                 boardContext.strokeStyle = smallGridColor;
-                if ( ((j > 2 && j < 6) && (i < 3 || i > 5)) || 
-                    ((j < 3 || j > 5) && (i > 2 && i < 6) ))      
-                {          
+                if ( ((j > 2 && j < 6) && (i < 3 || i > 5)) ||
+                    ((j < 3 || j > 5) && (i > 2 && i < 6) ))
+                {
                     boardContext.lineWidth = 4;
                     boardContext.strokeRect(x+(j*s), y+(i*s), s, s);
                 }
@@ -847,19 +809,19 @@ function drawGrid() {
                 {
                     boardContext.lineWidth = 1;
                     boardContext.strokeRect(x+(j*s) + 3.5, y+(i*s) + 3.5, s - 7, s - 7);
-                }        
+                }
             }
             else
-            {            
+            {
                 boardContext.strokeRect(x+(j*s), y+(i*s), s, s);
             }
-        
+
             if (j % 3 == 0)
                 counter++;
         }
     }
 
-    // fill in the numbers        
+    // fill in the numbers
     for(i = 0; i < 81; i++)
     {
         printCellNumbers(i);
@@ -874,50 +836,50 @@ function drawGrid() {
 function drawStartNewGameMenu()
 {
     currentPage = "newGameMenu";
-    
+
     $("#inGameButtons").hide();
     var newGameButtonLeft;
-    var startEasyTop = timerBottom; 
+    var startEasyTop = timerBottom;
 
     pauseTimer();
-    
+
     if (!gameFinished)
     {
-        bottomContext.save();    
-        bottomContext.fillStyle = gameMenuBarColor;    
+        bottomContext.save();
+        bottomContext.fillStyle = gameMenuBarColor;
         bottomContext.fillRect(gridMenuBarLeft, timerBottom + 10, gridMenuBarWidth , screenHeight);
         bottomContext.restore();
-        
+
         $("#closeButton").show();
-        newGameButtonLeft = logoLeft;    
+        newGameButtonLeft = logoLeft;
     }
     else
-    {        
+    {
         $("#closeButton").hide();    //User must select a new game to play as this one is finished
         bottomContext.clearRect(0, 0, bottomContext.canvas.width, bottomContext.canvas.height);
         newGameButtonLeft = screenWidth / 2 - (logoWidth / 2);
-        startEasyTop = 0;    
+        startEasyTop = 0;
     }
-        
+
     startGameContext.canvas.width = screenWidth;
     startGameContext.canvas.height = screenHeight;
-    
+
      $("#startNewGameCanvas").show();
-     $("#startNewGameCanvas").css("z-index", "10");   
+     $("#startNewGameCanvas").css("z-index", "10");
 
     /* Draw overlay */
-        
+
     startGameContext.save();
-    startGameContext.fillStyle = "rgba(230, 232, 231, 0.8)"; 
+    startGameContext.fillStyle = "rgba(230, 232, 231, 0.8)";
     startGameContext.fillRect(0,0,screenWidth, screenHeight);
     var startGameButtonHeight = screenHeight / 12 - 2;
-    
+
     var inGameSpacer = ((screenHeight - (6 * (startGameButtonHeight + shadowOffset))) / 10) | 2;
-        
-    
+
+
     var startNormalTop = startEasyTop + startGameButtonHeight + inGameSpacer;
     var startHardTop = startNormalTop + startGameButtonHeight + inGameSpacer;
-    var chooseTop = startHardTop + startGameButtonHeight + inGameSpacer;    
+    var chooseTop = startHardTop + startGameButtonHeight + inGameSpacer;
     var startGameButtonWidth = (logoWidth - shadowOffset);
 
     if (startEasyTop == 0)
@@ -926,46 +888,46 @@ function drawStartNewGameMenu()
         startEasyTop += menuSpacer;
         startNormalTop += menuSpacer;
         startHardTop += menuSpacer;
-        chooseTop += menuSpacer;    
+        chooseTop += menuSpacer;
     }
 
     $("#easyGameButton").css({
         "visibility":"visible",
-        "z-index": "11", 
-        "left": (newGameButtonLeft + 1) + "px", 
-        "top":(startEasyTop) + "px", 
-        "width":(startGameButtonWidth - 2) + "px", 
-        "height":(startGameButtonHeight) + "px", 
+        "z-index": "11",
+        "left": (newGameButtonLeft + 1) + "px",
+        "top":(startEasyTop) + "px",
+        "width":(startGameButtonWidth - 2) + "px",
+        "height":(startGameButtonHeight) + "px",
         "font": getButtonFont(startGameButtonHeight),
         "line-height": startGameButtonHeight + "px"
     });
     $("#normalGameButton").css({
-        "visibility":"visible", 
-        "z-index": "11", 
-        "left": (newGameButtonLeft + 1) + "px", 
-        "top":(startNormalTop) + "px", 
-        "width":(startGameButtonWidth - 2) + "px", 
-        "height":(startGameButtonHeight) + "px", 
+        "visibility":"visible",
+        "z-index": "11",
+        "left": (newGameButtonLeft + 1) + "px",
+        "top":(startNormalTop) + "px",
+        "width":(startGameButtonWidth - 2) + "px",
+        "height":(startGameButtonHeight) + "px",
         "font": getButtonFont(startGameButtonHeight),
         "line-height": startGameButtonHeight + "px"
     });
     $("#hardGameButton").css({
         "visibility":"visible",
-        "z-index": "11", 
-        "left": (newGameButtonLeft + 1) + "px", 
-        "top":(startHardTop) + "px", 
-        "width":(startGameButtonWidth - 2) + "px", 
-        "height":(startGameButtonHeight) + "px", 
+        "z-index": "11",
+        "left": (newGameButtonLeft + 1) + "px",
+        "top":(startHardTop) + "px",
+        "width":(startGameButtonWidth - 2) + "px",
+        "height":(startGameButtonHeight) + "px",
         "font": getButtonFont(startGameButtonHeight),
         "line-height": startGameButtonHeight + "px"
     });
     $("#chooseThemeText").css({
-        "visibility":"visible", 
-        "z-index": "11", 
-        "left": (newGameButtonLeft + 1) + "px", 
-        "top":(chooseTop) + "px", 
-        "width":(logoWidth - 2) + "px", 
-        "height":(startGameButtonHeight) + "px", 
+        "visibility":"visible",
+        "z-index": "11",
+        "left": (newGameButtonLeft + 1) + "px",
+        "top":(chooseTop) + "px",
+        "width":(logoWidth - 2) + "px",
+        "height":(startGameButtonHeight) + "px",
         "font": getFontSize($("#chooseThemeText").text(), startGameButtonHeight, logoWidth - 5, 1, startGameContext),
         "line-height": startGameButtonHeight + "px"
     });
@@ -989,29 +951,29 @@ function drawStartNewGameMenu()
         default:
             break;
     }
-    
+
     $("#gameLevelButtons").show();
-        
+
     var iconSpace = (startGameButtonWidth - (images.nancyThemeIconOn.width + images.manilaThemeIconOn.width + images.arigatoThemeIconOn.width)) / 2;
     var iconWidth = images.nancyThemeIconOn.width;
-    
+
     if (iconSpace < 0)
     {
         iconWidth = (startGameButtonWidth - 4) / 3;
-        iconSpace = 2;    
-    }    
-    
+        iconSpace = 2;
+    }
+
     var nancyIconRight = (newGameButtonLeft + iconWidth);
     var manilaIconRight = nancyIconRight + iconSpace + iconWidth;
     var themeIconTop = chooseTop + startGameButtonHeight + inGameSpacer - shadowOffset;
     var themeIconBottom = themeIconTop + images.manilaThemeIconOn.height;
     var optionsButtonTop = themeIconBottom + inGameSpacer;
     var startNewButtonTop = optionsButtonTop + startGameButtonHeight + inGameSpacer;
-    
+
     $("#manilaThemeIcon").attr("src", "images/global/btn_manilatheme_off.png");
     $("#nancyThemeIcon").attr("src", "images/global/btn_nancytheme_off.png");
     $("#arigatoThemeIcon").attr("src", "images/global/btn_arigatotheme_off.png");
-    
+
     switch (currentTheme)
     {
         case "Manila" :
@@ -1024,64 +986,64 @@ function drawStartNewGameMenu()
             $("#arigatoThemeIcon").attr("src", "images/global/btn_arigatotheme_on.png");
             break;
         default:
-            break;    
-    }    
-    
-    $("#nancyThemeIcon").css({"left": (newGameButtonLeft + 1) + "px", "top":themeIconTop + "px", "right":nancyIconRight + "px", "width":iconWidth + "px"}); 
-    $("#manilaThemeIcon").css({"left": (nancyIconRight + iconSpace) + "px", "top":themeIconTop + "px", "right": + "px", "width":iconWidth + "px"}); 
-    $("#arigatoThemeIcon").css({"left": (manilaIconRight + iconSpace) + "px", "top":themeIconTop + "px", "width":iconWidth + "px"}); 
+            break;
+    }
+
+    $("#nancyThemeIcon").css({"left": (newGameButtonLeft + 1) + "px", "top":themeIconTop + "px", "right":nancyIconRight + "px", "width":iconWidth + "px"});
+    $("#manilaThemeIcon").css({"left": (nancyIconRight + iconSpace) + "px", "top":themeIconTop + "px", "right": + "px", "width":iconWidth + "px"});
+    $("#arigatoThemeIcon").css({"left": (manilaIconRight + iconSpace) + "px", "top":themeIconTop + "px", "width":iconWidth + "px"});
     $("#closeButton").css({"left": (screenWidth - (images.closeButton.width + 20)) + "px", "top":20 + "px"});
-        
+
     $("#optionsButton").css({"z-index": "11", "background-color": standardButtonColor, "left": (newGameButtonLeft + 1) + "px", "top":optionsButtonTop + "px", "width":(startGameButtonWidth - 2) + "px", "height":(startGameButtonHeight) + "px", "font": getButtonFont(startGameButtonHeight) }).css("line-height", startGameButtonHeight + "px");
     $("#startGameButton").css({"z-index": "11", "background-color": standardButtonColor, "left": (newGameButtonLeft + 1) + "px", "top":startNewButtonTop + "px", "width":(startGameButtonWidth - 2) + "px", "height":(startGameButtonHeight) + "px", "font": getButtonFont(startGameButtonHeight) }).css("line-height", startGameButtonHeight + "px");
-    
-    $("#newGameThemeButtons").show();    
+
+    $("#newGameThemeButtons").show();
     startGameContext.restore();
 }
 
 function selectCell(event)
-{    
-    var ymin = (screenHeight - boardWidth) / 2;  
+{
+    var ymin = (screenHeight - boardWidth) / 2;
     var cW = boardWidth/9;
     var xC;
     var yC;
-    
+
     xC = event.offsetX - ((event.offsetX - boardOffset) % cW);
     yC = event.offsetY - ((event.offsetY - ymin) % cW);
     cellSelected = Math.floor(((((yC-ymin+1)/cW)*9) + ((xC-boardOffset+1)/cW)));
 
     // check to be sure the cell is selectable
-    if((cellSelected < 0)||(cellSelected >= 81) ) 
+    if((cellSelected < 0)||(cellSelected >= 81) )
         cellSelected = -1;
 }
 
 function drawPicker(event) {
-    
+
     // clear the whole canvas first
     topContext.clearRect(0, 0, topContext.canvas.width, topContext.canvas.height);
 
     // calculate the board, touch, and cell coordinates
-               
+
     var xBmin = boardOffset;
     var yBmin = (screenHeight - boardWidth) / 2;
     var bWidth = boardWidth/3;
     var cWidth = boardWidth/9;
     var xCell;
-    var yCell;    
+    var yCell;
 
     var boardRight = xBmin + boardWidth + boardOffset;
     xNumberPick = boardRight;
     yNumberPick = 0;
     npWidth = screenHeight / 9;
-    
-    if((cellSelected < 0)||(cellSelected >= 81) ) 
+
+    if((cellSelected < 0)||(cellSelected >= 81) )
         return;
-    
+
     if(cellSelected < 0)
     {
-        
+
         selectCell(event);
-      
+
         xCell = event.offsetX - ((event.offsetX - xBmin) % cWidth);
         yCell = event.offsetY - ((event.offsetY - yBmin) % cWidth);
     }
@@ -1094,54 +1056,54 @@ function drawPicker(event) {
     var i;
     var textSize = (bWidth*3/4)|0;
     topContext.font = textSize.toString() + "px " + numberFont;
-    
-    if (!game.cells[cellSelected].fixed)        // Don't draw number selector if it's a fixed number    
-    {       
+
+    if (!game.cells[cellSelected].fixed)        // Don't draw number selector if it's a fixed number
+    {
         for(i = 0; i < 9; i++)
         {
-            topContext.fillStyle = (pickerMode)?((game.cells[cellSelected].possible[i].selected)?numNoteBoxSelectedColor:numNoteBoxColor):numPickBoxColor; 
+            topContext.fillStyle = (pickerMode)?((game.cells[cellSelected].possible[i].selected)?numNoteBoxSelectedColor:numNoteBoxColor):numPickBoxColor;
             topContext.strokeStyle = numPickOutlineColor;
-            topContext.lineWidth = 5;        
+            topContext.lineWidth = 5;
             topContext.fillRect(xNumberPick, yNumberPick + (npWidth*i), npWidth, npWidth);
-            topContext.strokeRect(xNumberPick, yNumberPick + (npWidth*i), npWidth, npWidth);        
-        }     
+            topContext.strokeRect(xNumberPick, yNumberPick + (npWidth*i), npWidth, npWidth);
+        }
     }
-            
-    topContext.fillStyle = highlightColor;            
+
+    topContext.fillStyle = highlightColor;
     topContext.fillRect(xBmin, yCell, cWidth*9, cWidth);
     topContext.fillRect(xCell, yBmin, cWidth, cWidth*9);
 
-    // Redraw the selected cell so it stands out           
+    // Redraw the selected cell so it stands out
     topContext.clearRect(xCell, yCell, cWidth, cWidth);
     topContext.lineWidth=4;
-  
+
     bottomContext.fillStyle  = "rgba(255, 255, 255, 1)";
     bottomContext.fillRect(xCell, yCell, cWidth, cWidth);
     var boxBuffer = currentTheme != "Nancy" ? .25 : 0;
-    
+
     if (currentTheme != "Nancy")
         topContext.drawImage(squareSelector, xCell - (cWidth * boxBuffer), yCell - (cWidth * boxBuffer), cWidth + 2*(cWidth * boxBuffer), cWidth + 2*(cWidth * boxBuffer));
     else
         bottomContext.drawImage(squareSelector, xCell - (cWidth * boxBuffer), yCell - (cWidth * boxBuffer), cWidth + 2*(cWidth * boxBuffer), cWidth + 2*(cWidth * boxBuffer));
-        
+
     printCellNumbers(cellSelected);
-    
+
     topContext.fillStyle = numPickTextColor;
     var txtSize = ((boardWidth/9)*3/4)|0;
-    
+
     for(i = 0; i < 9; i++)
-    {        
+    {
         topContext.save();
         topContext.font = txtSize.toString() + "px " + numberFont;
-        
+
         var num = (i+1).toString();
         var tDim = topContext.measureText(num);
         var xOffset = (npWidth / 2) - (tDim.width/2);
         var yOffset = npWidth / 2;
-                
-        topContext.textBaseline = "middle";        
-        topContext.fillText(num, xNumberPick + xOffset, yNumberPick + (npWidth*i) + yOffset);         
-        topContext.restore();        
+
+        topContext.textBaseline = "middle";
+        topContext.fillText(num, xNumberPick + xOffset, yNumberPick + (npWidth*i) + yOffset);
+        topContext.restore();
     }
 }
 
@@ -1158,7 +1120,7 @@ function handlePicker(event) {
     if(pickerMode == 0)
     {
         game.setValue(cellSelected, num);
-        
+
         // clear the whole canvas first
         topContext.clearRect(0, 0, topContext.canvas.width, topContext.canvas.height);
         cellSelected = -1;
@@ -1184,12 +1146,12 @@ function getNumberKey(event)
     else if (event.which === 46 || event.which === 8)
         return 0;
     else if (event.which === 16)
-    {        
+    {
         if (option_showpossible != 1)
         {
             pickerMode = !pickerMode;
             noteMode = !noteMode;
-            drawGrid();        
+            drawGrid();
             drawPicker();
         }
     }
@@ -1199,20 +1161,20 @@ function getNumberKey(event)
             cellSelected--;
         else
             cellSelected += 8;
-        
-        drawGrid();         
-        drawPicker();   
+
+        drawGrid();
+        drawPicker();
     }
     else if (event.which == 39)            //Right Arrow, move selected squre
     {
-        if ((cellSelected + 1) % 9 != 0) 
+        if ((cellSelected + 1) % 9 != 0)
         {
             cellSelected++;
-        }   
+        }
         else
             cellSelected -= 8;
 
-        drawGrid();         
+        drawGrid();
         drawPicker();
     }
     else if (event.which == 38)            //Up Arrow, move selected squre
@@ -1220,11 +1182,11 @@ function getNumberKey(event)
         if (cellSelected - 9 >= 0)
         {
             cellSelected -= 9;
-        }   
+        }
         else
             cellSelected += 72;
 
-        drawGrid();         
+        drawGrid();
         drawPicker();
     }
     else if (event.which == 40)            //Down Arrow, move selected squre
@@ -1232,42 +1194,42 @@ function getNumberKey(event)
         if (cellSelected + 9 < 81)
         {
             cellSelected += 9;
-        }   
+        }
         else
             cellSelected -= 72;
-            
-        drawGrid();         
+
+        drawGrid();
         drawPicker();
     }
     return -1;
 }
 
 function onKeypress(event)
-{    
+{
     if ((cellSelected > -1)&&(currentPage == "gameGrid"))
     {
         var numberPressed = getNumberKey(event);
-    
+
         if (!noteMode && !pickerMode)        //If this is a number selection
-        {            
-            game.setValue(cellSelected, numberPressed);            
-                   
+        {
+            game.setValue(cellSelected, numberPressed);
+
             drawGrid();
-            drawPicker();        
+            drawPicker();
         }
         else if (numberPressed > 0)         //If this is a note
-        {            
+        {
             game.cells[cellSelected].possible[numberPressed-1].selected = !game.cells[cellSelected].possible[numberPressed-1].selected;
-            drawGrid();         
-            drawPicker();       
+            drawGrid();
+            drawPicker();
         }
         else if (numberPressed === 0)
         {
             game.setValue(cellSelected, 0);
-            drawGrid();         
-            drawPicker();   
-        }        
-    }         
+            drawGrid();
+            drawPicker();
+        }
+    }
     if (event.which === 72)
     {
         if(helpDialog.shown)
@@ -1300,8 +1262,8 @@ function onMouseUp(event) {
     }
 
     // calculate the board dimensions
-   
-    var xBmin = boardOffset; 
+
+    var xBmin = boardOffset;
     var yBmin = (screenHeight - boardWidth) / 2;
     var xBmax = xBmin + boardWidth;
     var yBmax = yBmin + boardWidth;
@@ -1311,19 +1273,19 @@ function onMouseUp(event) {
        (event.offsetY >= yBmin)&&(event.offsetY <= yBmax))
     {
         if(!(cellSelected < 0))
-            cellSelected = -1;    
-        
+            cellSelected = -1;
+
         selectCell(event);
         if(game.cells[cellSelected].fixed)
         {
-            cellSelected = -1;    
+            cellSelected = -1;
             return;
         }
-        
+
         if (!noteMode)
         {
             //If all options are shown, disable notes mode
-            if (option_showpossible == 0)            
+            if (option_showpossible == 0)
                 pickerMode = event.isPressAndHold ? 1 : 0;
             else
                 pickerMode = 0;
@@ -1335,9 +1297,9 @@ function onMouseUp(event) {
     }
     else if ((event.offsetX >= xNumberPick) && (event.offsetX <= (xNumberPick + npWidth)) &&
             (event.offsetY >= yNumberPick)&&(event.offsetY <= yNumberPick + ((npWidth * 9))) )
-    { 
+    {
         if(cellSelected >= 0)
-            handlePicker(event);            
+            handlePicker(event);
     }
     else
     {
@@ -1361,13 +1323,13 @@ function imageLoader(sources){
         images[src] = new Image();
         images[src].onload = function(){
                if (++imagesLoaded === imagesToLoad)
-               {    
+               {
                    updateTheme();
                 $(window).trigger("imagesLoaded");
             }
         };
         images[src].src = sources[src];
-    }    
+    }
 }
 
 function drawPage(){
@@ -1387,7 +1349,7 @@ function drawPage(){
 }
 
 function loadText() {
-    
+
     easyDiff = chrome.i18n.getMessage("easy");
     normalDiff = chrome.i18n.getMessage("normal");
     hardDiff = chrome.i18n.getMessage("hard");
@@ -1395,8 +1357,8 @@ function loadText() {
     aboutText = chrome.i18n.getMessage("about");
     $("#newGameButton").text(chrome.i18n.getMessage("newGame"));
     $("#resumeGameButton").text(chrome.i18n.getMessage("resumeGame"));
-    $("#aboutButton").text(chrome.i18n.getMessage("about")); 
-    $("#help_contents").html(chrome.i18n.getMessage("aboutGameText"));    
+    $("#aboutButton").text(chrome.i18n.getMessage("about"));
+    $("#help_contents").html(chrome.i18n.getMessage("aboutGameText"));
     $("#easyGameButton").text(chrome.i18n.getMessage("easy"));
     $("#normalGameButton").text(chrome.i18n.getMessage("normal"));
     $("#hardGameButton").text(chrome.i18n.getMessage("hard"));
@@ -1417,10 +1379,10 @@ function init() {
     currentTheme = localStorage.getItem("theme");
 
     if (!currentTheme)
-    {  
+    {
        currentTheme = "Manila";
        localStorage.setItem("theme", currentTheme);
-    }        
+    }
 
     var sources = {
         mainMenuBG: "images/global/bg_title.png",
@@ -1440,11 +1402,11 @@ function init() {
         nancySquareSelectorGreen: "images/Nancy/img_choosenumgreen.png",
         arigatoSquareSelector: "images/Arigato/img_squareselector.png"
         }
-        
+
     imageLoader(sources);
-    
+
     $("#fontLoader").hide();
-  
+
     bottomCanvas = document.getElementById("bottomcanvas");
     highlightCanvas = document.getElementById("highlightcanvas");
     boardCanvas = document.getElementById("gridcanvas");
@@ -1464,7 +1426,7 @@ function init() {
     mainMenuContext = mainMenuCanvas.getContext('2d');
     startGameContext = startGameCanvas.getContext('2d');
 
-    $(window).bind('resize', drawPage);        
+    $(window).bind('resize', drawPage);
     $(window).bind('imagesLoaded', drawPage);
 
     topCanvas.addEventListener('mousedown', onMouseDown);
@@ -1484,7 +1446,7 @@ function game_restart(d) {
     timer = 0;
     pausedSeconds = 0;
     timerPause = undefined;
-    drawGrid();    
+    drawGrid();
     game.ready = true;
 }
 
@@ -1521,7 +1483,7 @@ function updateTheme()
             boardBGColor2 = "rgba(50, 50, 50, 1)";
             smallGridColor = "gray";
             gridColor = "black";
-            highlightColor = "rgba( 160, 160, 160, .5)"; 
+            highlightColor = "rgba( 160, 160, 160, .5)";
             standardTextColor = "white";
             buttonSelectedColor = "rgba(0, 200, 1, 1)";
             keypadSelectedColor = "rgba(200, 0, 200, 1)";
@@ -1536,8 +1498,8 @@ function updateTheme()
             buttonFont = "bold 40px Arigato";
             numberFont = "Arigato";
             boardBGColor1 = "rgba( 144, 212, 213, 1)";
-            boardBGColor2 = "rgba( 245, 243, 222, 1)"; 
-            highlightColor = "rgba( 249, 175, 150, .5)"; 
+            boardBGColor2 = "rgba( 245, 243, 222, 1)";
+            highlightColor = "rgba( 249, 175, 150, .5)";
             gridColor = "rgba(0, 0, 0, 1)";
             standardTextColor = "black";
             buttonSelectedColor = "rgba( 249, 175, 150, 1)";
@@ -1549,6 +1511,8 @@ function updateTheme()
 }
 
 window.addEventListener('load', function () {
+    scaleBody(document.getElementsByTagName("body")[0], 720);
+
     license_init("license", "primary");
     Sounds.newgames = [];
     Sounds.newgames[0] = new GameSound("audio/Arigato_NewGame.ogg");
@@ -1572,7 +1536,7 @@ window.addEventListener('load', function () {
     });
 
     $(".button").css({"-webkit-box-shadow": glossyButton, "background-image": standardButtonGradiant});
-    $("#writeNoteButton").css({"-webkit-box-shadow": glossyButton, "background-image": standardButtonGradiant});    
+    $("#writeNoteButton").css({"-webkit-box-shadow": glossyButton, "background-image": standardButtonGradiant});
 
     $('#easyButton').click(function () {
         game_restart("easy");
@@ -1583,52 +1547,52 @@ window.addEventListener('load', function () {
     $('#hardButton').click(function () {
         game_restart("hard");
     });
-    
+
     $('#mainMenuCanvas').click(function(e) {
 
         var clearScreen = false;
-        
+
         if ( e.offsetX >= playMenuLeftEdge && e.offsetX <= playMenuLeftEdge + playMenuWidth )
         {
             if ( !(e.offsetY >= playMenuTop && e.offsetY <= playMenuTop + playMenuHeight))
-            {                
-                clearScreen = true;            
+            {
+                clearScreen = true;
             }
         }
         else
-        {                
-            clearScreen = true;    
+        {
+            clearScreen = true;
         }
-        
+
         if (clearScreen)
         {
             $("#easyGameButton").css({"visibility": "hidden"});
             $("#normalGameButton").css({"visibility": "hidden"});
             $("#hardGameButton").css({"visibility": "hidden"});
-                        
+
             playMenuVisible = false;
             drawMainMenu();
         }
     });
-            
 
-    $('#newGameButton').click( function(){                        
+
+    $('#newGameButton').click( function(){
         Sounds.button.play();
         drawPlayBar();
-        $("#gameLevelButtons").show();    
-        playMenuVisible = true;    
-    });    
+        $("#gameLevelButtons").show();
+        playMenuVisible = true;
+    });
 
-    $('#resumeGameButton').click( function(){    
+    $('#resumeGameButton').click( function(){
         Sounds.button.play();
         currentTheme = localStorage.getItem("theme");
         updateTheme();
-    
+
     if (localStorage.getItem("hasData") === "true")
     {
         game = new NumberPlaceGame("easy");
         game.cells = JSON.parse(localStorage.getItem("cells") );
-        
+
         game.prevvalidrow = JSON.parse(localStorage.getItem("prevvalidrow") );
         game.prevvalidcol = JSON.parse(localStorage.getItem("prevvalidcol") );
         game.prevvalidsub = JSON.parse(localStorage.getItem("prevvalidsub") );
@@ -1644,59 +1608,59 @@ window.addEventListener('load', function () {
         timerBegin = parseFloat(localStorage.getItem("timerBegin"));
         timerPause = parseFloat(localStorage.getItem("timerPause"));
         timerResume = parseFloat(localStorage.getItem("timerResume"));
-        
+
         if (!timerPause)
             timerPause = timerResume;
-            
+
         currentTheme = localStorage.getItem("theme");
         updateTheme();
-        
+
         game.ready = true;
-       
+
         $("#mainMenuCanvas").hide();
         $("#mainMenuButtons").hide();
-        $("#startNewGameCanvas").css("z-index", "1"); 
-        $("#startNewGameCanvas").hide();         
+        $("#startNewGameCanvas").css("z-index", "1");
+        $("#startNewGameCanvas").hide();
         $("#gameLevelButtons").hide();
         $("#newGameThemeButtons").hide();
         $("#inGameButtons").show();
-            
+
         game.checkValidGrid();
         $("#licensebtnl").hide();
         drawGrid();
     }
 
-    });    
-    
-    $('#aboutButton').click( function(){    
+    });
+
+    $('#aboutButton').click( function(){
         Sounds.button.play();
         helpDialog.show();
         return false;
     });
-        
+
     $(".button").mousedown( function() {
         $(this).css("background-color",buttonSelectedColor);
     });
-    
+
     $(".button").mouseup( function() {
-        $(this).css("background-color",standardButtonColor);    
+        $(this).css("background-color",standardButtonColor);
     });
-    
+
     $(".button").mouseleave( function() {
         if (currentPage != "newGameMenu")
             $(this).css("background-color",standardButtonColor);
     });
-    
+
     $(".gameButton").click( function(){
-    
+
         if (currentPage == "mainMenu")
         {
-            $("#mainMenuCanvas").hide(); 
+            $("#mainMenuCanvas").hide();
             $("#mainMenuButtons").hide();
-            $("#gameLevelButtons").hide();        
+            $("#gameLevelButtons").hide();
             $("#gameLevelButtons").hide();
             $("#newGameThemeButtons").hide();
-            $("#inGameButtons").show();                
+            $("#inGameButtons").show();
         }
 
         switch (this.id)
@@ -1707,15 +1671,15 @@ window.addEventListener('load', function () {
                 {
                     localStorage.setItem("difficulty", difficulty);
                     option_flaginvalid = 1;
-                    game_restart("easy");                    
+                    game_restart("easy");
                 }
                 else
                 {
                     Sounds.menu.play();
                     $(this).css("background-color",buttonSelectedColor);
                     $("#normalGameButton").css("background-color",standardButtonColor);
-                    $("#hardGameButton").css("background-color",standardButtonColor);                
-                }                
+                    $("#hardGameButton").css("background-color",standardButtonColor);
+                }
                 break;
             case "normalGameButton":
                 difficulty = normalDiff;
@@ -1730,7 +1694,7 @@ window.addEventListener('load', function () {
                     Sounds.menu.play();
                     $(this).css("background-color",buttonSelectedColor);
                     $("#easyGameButton").css("background-color",standardButtonColor);
-                    $("#hardGameButton").css("background-color",standardButtonColor);                
+                    $("#hardGameButton").css("background-color",standardButtonColor);
                 }
                 break;
             case "hardGameButton":
@@ -1746,13 +1710,13 @@ window.addEventListener('load', function () {
                     Sounds.menu.play();
                     $(this).css("background-color",buttonSelectedColor);
                     $("#easyGameButton").css("background-color",standardButtonColor);
-                    $("#normalGameButton").css("background-color",standardButtonColor);        
+                    $("#normalGameButton").css("background-color",standardButtonColor);
                 }
                 break;
             default:
                 Sounds.button.play();
-                break;                
-        }        
+                break;
+        }
     });
 
     $("#viewHintButton").click( function(){
@@ -1760,9 +1724,9 @@ window.addEventListener('load', function () {
         {
             Sounds.button.play();
             var noNotes = true;
-            
+
             for (i = 0; i < 9; i++)
-            {    
+            {
                 //Only hint numbers the user has already selected
                 if (game.cells[cellSelected].possible[i].selected && !game.cells[cellSelected].possible[i].hinted)
                 {
@@ -1770,20 +1734,20 @@ window.addEventListener('load', function () {
                     noNotes = false;
                 }
             }
-            
+
             if (noNotes)
             {
                 for (i = 0; i < 9; i++)
-                {                    
+                {
                     if (!game.cells[cellSelected].possible[i].hinted)
                     {
                         if (game.checkPossible(cellSelected, i+1))
-                        {    //Give one hint per click                        
+                        {    //Give one hint per click
                             game.cells[cellSelected].possible[i].selected = true;
                             game.cells[cellSelected].possible[i].hinted = true;
                             break;
                         }
-                    }                            
+                    }
                 }
             }
         }
@@ -1795,8 +1759,8 @@ window.addEventListener('load', function () {
         Sounds.button.play();
         if (option_showpossible != 1)
         {
-            noteMode = !noteMode;        
-            
+            noteMode = !noteMode;
+
             if (noteMode)
             {
                 $(this).css({"background-color":buttonSelectedColor, "color": "white" });
@@ -1806,7 +1770,7 @@ window.addEventListener('load', function () {
             {
                 $(this).css({"background-color":standardButtonColor, "color": "black"});
                 pickerMode = 0;
-            }    
+            }
             drawGrid();
             drawPicker();
         }
@@ -1817,36 +1781,36 @@ window.addEventListener('load', function () {
         helpDialog.show();
         return false;
     });
-    
+
     $("#startNewGameButton").click( function(){
         Sounds.button.play();
         drawStartNewGameMenu();
     });
-    
+
     $("#nancyThemeIcon").click(
-          
+
       function(){
           if (currentTheme != "Nancy")
           {
             Sounds.difficulty.play();
-            $(this).attr("src", "images/global/btn_nancytheme_on.png");              
+            $(this).attr("src", "images/global/btn_nancytheme_on.png");
             currentTheme = "Nancy";
             localStorage.setItem("theme", currentTheme);
             $("#manilaThemeIcon").attr("src", "images/global/btn_manilatheme_off.png");
             $("#arigatoThemeIcon").attr("src", "images/global/btn_arigatotheme_off.png");
             updateTheme();
-        }        
-      }        
-      
+        }
+      }
+
     );
-    
+
     $("#manilaThemeIcon").click(
-          
+
       function(){
           if (currentTheme != "Manila")
-          { 
+          {
             Sounds.difficulty.play();
-              $(this).attr("src", "images/global/btn_manilatheme_on.png"); 
+              $(this).attr("src", "images/global/btn_manilatheme_on.png");
               currentTheme = "Manila";
               localStorage.setItem("theme", currentTheme);
             $("#nancyThemeIcon").attr("src", "images/global/btn_nancytheme_off.png");
@@ -1854,16 +1818,16 @@ window.addEventListener('load', function () {
             updateTheme();
         }
       }
-      
+
     );
-    
+
     $("#arigatoThemeIcon").click(
-          
-      function(){ 
+
+      function(){
           if (currentTheme != "Arigato")
           {
             Sounds.difficulty.play();
-              $(this).attr("src", "images/global/btn_arigatotheme_on.png"); 
+              $(this).attr("src", "images/global/btn_arigatotheme_on.png");
               currentTheme = "Arigato";
               localStorage.setItem("theme", currentTheme);
             $("#manilaThemeIcon").attr("src", "images/global/btn_manilatheme_off.png");
@@ -1871,36 +1835,36 @@ window.addEventListener('load', function () {
             updateTheme();
         }
       }
-      
+
     );
-    
+
     $("#closeButton").click(
-        function(){ 
+        function(){
             Sounds.button.play();
-            if (!gameFinished)        
+            if (!gameFinished)
             {
-                $("#startNewGameCanvas").css("z-index", "1"); 
-                $("#startNewGameCanvas").hide();         
+                $("#startNewGameCanvas").css("z-index", "1");
+                $("#startNewGameCanvas").hide();
                 $("#gameLevelButtons").hide();
                 $("#newGameThemeButtons").hide();
-                $("#inGameButtons").show();                
+                $("#inGameButtons").show();
                 drawGrid();
             }
         }
     );
-            
+
     $("#startGameButton").click( function(){
         Sounds.button.play();
         localStorage.setItem("difficulty", difficulty);
-        localStorage.setItem("theme", currentTheme);            
+        localStorage.setItem("theme", currentTheme);
         updateTheme();
-        
-        $("#startNewGameCanvas").css("z-index", "1"); 
-        $("#startNewGameCanvas").hide();         
+
+        $("#startNewGameCanvas").css("z-index", "1");
+        $("#startNewGameCanvas").hide();
         $("#gameLevelButtons").hide();
         $("#newGameThemeButtons").hide();
         $("#inGameButtons").show();
-        
+
         switch(difficulty){
             case easyDiff :
                 option_flaginvalid = 1;
