@@ -7,9 +7,9 @@
     "components"
   ],
   "dependencies": {
-    "carterone-font": "http://www.google.com/fonts/download?kit=CGNJyPUoG8QgiQeAv4fmnoYMAplal9iyphM6wxGuzoM",
-    "questrial-font": "http://www.google.com/fonts/download?kit=fvgDVv8EfT8RnZpyV7vbmVtkqrIMaAZWyLYEoB48lSQ",
-    "nova-font": "http://www.google.com/fonts/download?kit=_m2nPFkZFucmzq044Y7St1tkqrIMaAZWyLYEoB48lSQ",
+    "carterone-font": "http://themes.googleusercontent.com/static/fonts/carterone/v5/VjW2qt1pkqVtO22ObxgEBRsxEYwM7FgeyaSgU71cLG0.woff",
+    "questrial-font": "http://themes.googleusercontent.com/static/fonts/questrial/v3/MYWJ4lYm5dbZ1UBuYox79D8E0i7KZn-EPnyo3HZu7kw.woff",
+    "nova-font": "http://themes.googleusercontent.com/static/fonts/novamono/v4/pN6VVBY03b9QLz-7i6Kl0T8E0i7KZn-EPnyo3HZu7kw.woff",
     "jquery": "~2.0.3"
   }
 }

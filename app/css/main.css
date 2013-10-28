@@ -153,17 +153,17 @@ div[data-role='fieldcontain'] {
 
 @font-face {
     font-family: 'Manila';
-    src: url('../lib/questrial-font/Questrial-Regular.ttf');
+    src: url('../lib/questrial-font/index.woff');
 }
 
 @font-face {
     font-family: 'Arigato';
-    src: url('../lib/carterone-font/CarterOne.ttf');
+    src: url('../lib/carterone-font/index.woff');
 }
 
 @font-face {
     font-family: 'Nancy';
-    src: url('../lib/nova-font/NovaMono.ttf');
+    src: url('../lib/nova-font/index.woff');
 }
 
 .mainMenuButton {
